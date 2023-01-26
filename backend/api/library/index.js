@@ -133,7 +133,7 @@ class library{
 /* AUTO ADD */
     async addLucky(stringToSearch,res){
         try{
-            const data     =  await CONTROLS.searchGeninus(stringToSearch)            // search genius
+            const data     =  await this.searchGeninus(stringToSearch)            // search genius
             if (data.type != "song"){console.log("addLucky: Couldn't find genius data");res.send("Sorry, we couldn't find that song on genius.com"); return false}
             const song = new Song()
                 song.id          = uuidv4()
@@ -147,7 +147,7 @@ class library{
                 song.spotify     = data.info.spotifyUuid
             if (!song.youtube){return false}
             
-            const searchResults = await CONTROLS.searchLibrary(data.info.title) // if song already exists exit
+            const searchResults = await this.searchLibrary(data.info.title) // if song already exists exit
             for (let i=0; i<searchResults.hits.length; i++){
                 const hit = searchResults.hits[i]
                 if (song.title === hit.title && song.artist === hit.artist){
@@ -156,7 +156,7 @@ class library{
                     return false
                 }
             }
-            res.send(`Adding ${song.title} by ${song.artist} to the pebblez library`)
+            res.send(`Adding ${song.title} by ${song.artist} to the library`)
             database.addDocuments([song])                          // add the song to the database
             await youtubedl(`${LIBRARY}/${song.id}`, song.youtube) // youtubedl the youtube song 
             await dlimg(data.info.artwork,song.id)                 // download and format the album art with ffmpeg
