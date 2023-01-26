@@ -12,7 +12,7 @@ docker build --tag radio .
 docker run -it --init -p 3000:3000 -v ${PWD}/library:/usr/src/library --network test-network radio
 
 # Expose to the internet with localhost.run
-ssh -i </path/to/identity_file.pub>  -R <domain>:80:localhost:3000 localhost.run
+ssh -R 80:localhost:8080 nokey@localhost.run
 ```
 
 ## Technologies
