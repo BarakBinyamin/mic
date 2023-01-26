@@ -62,6 +62,7 @@ class API {
 
     async getNextSong(){
         const nextSongId = this.QUEUE[0]?.id
+        console.log(nextSongId)
         const nextSong   = nextSongId ? nextSongId : this.DEFAULT_TRACK_ID
         return nextSong
     }
@@ -70,19 +71,20 @@ class API {
         console.log("Loading next track...")
         try{
             if (!this.ISUPDATING){
+                const nowplaying    = this.TRACKS.find(track => track.trackid == "main")
+                nowplaying.position = 0
                 this.ISUPDATING = true
                 this.QUEUE.shift(1)     // remove from stack
                 const nextSong      = await this.getNextSong()
                 await setNowPlaying(nextSong,this.SETTINGS)   // ffmpeg the mp3 into the nowplayling.mp3
-                const nowplaying    = this.TRACKS.find(track => track.id == "main")
-                nowplaying.position = 0
-                this.EVENTEMIITER.emit(newSongEvent)      // new song event so that new song event can be sent to host with data
+                this.EVENTEMIITER.emit(newSongEvent)          // new song event so that new song event can be sent to host with data
                 this.ISUPDATING = false
             }else{
                 await new Promise((resolve, reject) => setTimeout(resolve, 500))
                 return true 
             }
         }catch(err){
+            console.log(err)
             this.ISUPDATING = false
         }
     }
@@ -107,6 +109,15 @@ class API {
     // #ADD  SONG TO LIBRARY   #1
     // #ADD  SONG TO QUEUE     #3
     // #PLAY SONG NOW          #2
+    async playnow(song){
+        if (this.QUEUE.length==0){
+            this.QUEUE.push(song) // we have to do this twice because whitenoise is not listed in the queue
+            this.QUEUE.push(song) // a song does not leave the queue unti it is done playing
+        }else{
+            this.QUEUE.splice(1, 0, song) // insert song into queue as next track
+        }
+        await this.skip()
+    }
 
     // #SET FADE IN FADE OUT  
 

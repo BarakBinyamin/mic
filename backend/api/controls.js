@@ -1,18 +1,17 @@
 const { MeiliSearch } = require('meilisearch')
-const { genius      } = require('../../scrapers/genius')
-const { youtubedl   } = require('../../scrapers/youtubedl')
+const { genius      } = require('../scrapers/genius')
+const { youtubedl   } = require('../scrapers/youtubedl')
 
-const { Song        } = require('../../data-schemas/song.js')
+const { Song        } = require('../data-schemas/song.js')
 const { v4: uuidv4  } = require('uuid')
 const fs              = require('fs')
 
-const { dlimg           } = require('../../multimedia/dlimg.js')
-const { writeTags       } = require('../../multimedia/meta.js')
-const { copyToWavAndMp3 } = require('../../multimedia/convert.js')
-const { setNowPlaying   } = require('../../multimedia/setNowPlaying.js')
+const { dlimg           } = require('../multimedia/dlimg.js')
+const { writeTags       } = require('../multimedia/meta.js')
+const { copyToWavAndMp3 } = require('../multimedia/convert.js')
 
 const client = new MeiliSearch({
-  host: 'http://meili:7700',
+  host: 'http://localhost:7700',
 })
 const database = client.index("songs")
 
@@ -35,6 +34,7 @@ class controls{
     //         return song
     //     }
     // }
+    /*
     async addtoqueue(nowplaying, needle, settings, songname){
         console.log(`Got request to add ${songname} to the queue...`)
         const songs  = await database.search(songname)
@@ -104,7 +104,7 @@ class controls{
         }
     }
     
-
+*/
 /* RADIO SETTINGS */
 // setfade
 
@@ -175,7 +175,7 @@ class controls{
 }
 
 const CONTROLS = new controls()
-module.exports.controls = CONTROLS
+module.exports = CONTROLS
 
 // usage
 // const { controls } = require('./api/functions/controls.js')

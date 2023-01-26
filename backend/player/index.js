@@ -46,9 +46,7 @@ NEEDLE.on("update", updateBuffer)
 const player = {
     getAudioBuffer : () => { return AUDIOBUFFER },
     eventEmitter   : EVENTEMITTER,
-    api: {
-        // TODO
-    }
+    api: api
 }
 
 module.exports = player
