@@ -1,9 +1,13 @@
 # mic
-A cool web radio station with a siri accessible command api to enque and skip songs
+A cool web radio station with a siri accessible command api to add, enque, and skip songs
 
 ## Quickstart
 ```bash
-# Launch elastic search database
+# Get this project
+git clone https://github.com/BarakBinyamin/mic.git
+cd mic
+
+# Launch an elastic search database
 docker network create test-network
 docker run --name meili --network test-network -p 7700:7700 -d -it getmeili/meilisearch
 
