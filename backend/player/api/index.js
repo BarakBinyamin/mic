@@ -62,7 +62,6 @@ class API {
 
     async getNextSong(){
         const nextSongId = this.QUEUE[0]?.id
-        console.log(nextSongId)
         const nextSong   = nextSongId ? nextSongId : this.DEFAULT_TRACK_ID
         return nextSong
     }
@@ -102,7 +101,7 @@ class API {
     }
     // #SKIP SONG PLAYING NOW  #5
     async skip(){
-        loadNextTrack()
+        this.loadNextTrack()
     }
     // #GET  SONG mp3/wav/m4a
     // #GET  SONG INFO         
@@ -127,4 +126,4 @@ class API {
     // #REMOVE PLAYLIST TO QUEUE
 }
 
-module.exports.API = API
+module.exports = API

@@ -1,14 +1,14 @@
 const { MeiliSearch } = require('meilisearch')
-const { genius      } = require('../scrapers/genius')
-const { youtubedl   } = require('../scrapers/youtubedl')
+const { genius      } = require('../../scrapers/genius')
+const { youtubedl   } = require('../../scrapers/youtubedl')
 
-const { Song        } = require('../data-schemas/song.js')
+const { Song        } = require('../../data-schemas/song.js')
 const { v4: uuidv4  } = require('uuid')
 const fs              = require('fs')
 
-const { dlimg           } = require('../multimedia/dlimg.js')
-const { writeTags       } = require('../multimedia/meta.js')
-const { copyToWavAndMp3 } = require('../multimedia/convert.js')
+const { dlimg           } = require('../../multimedia/dlimg.js')
+const { writeTags       } = require('../../multimedia/meta.js')
+const { copyToWavAndMp3 } = require('../../multimedia/convert.js')
 
 const client = new MeiliSearch({
   host: 'http://localhost:7700',
@@ -20,7 +20,7 @@ const LIBRARY = '../library'
 const QUEUE      = []
 let   ISUPDATING = false
 
-class controls{
+class library{
 /* RADIO CONTROLS */
 
     // async getLastSongInQueueFromFirst(first_id){
@@ -174,8 +174,7 @@ class controls{
     }
 }
 
-const CONTROLS = new controls()
-module.exports = CONTROLS
+module.exports = new library()
 
 // usage
 // const { controls } = require('./api/functions/controls.js')

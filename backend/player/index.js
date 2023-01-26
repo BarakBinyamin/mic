@@ -1,15 +1,10 @@
 const EventEmitter        = require('events')
 const { createNeedle }    = require('./needle.js')
-const { API }             = require('./api')
-const { inherits } = require('util')
+const API                 = require('./api')
 // player.js 
 //   The core element in audio management
 //   Abstract: This module is responsible for making the audioBuffer contain the right data at the right time.
 //   Usage   : To stream audio, read from the player.audioBuffer on every player update event   
-//
-//  Notes about importing this module:
-//    this module is ONE variable that many files may access
-//    For convention the player object should be imported in one file, and passed into functions that require it
 
 // CONSTANT GLOBALS
 const UPDATERATE      = '* * * * * *'            // every Second
