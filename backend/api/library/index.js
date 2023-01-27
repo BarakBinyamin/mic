@@ -11,7 +11,7 @@ const { dlimg           } = require('../../multimedia/dlimg.js')
 const { writeTags       } = require('../../multimedia/meta.js')
 const { copyToWavAndMp3 } = require('../../multimedia/convert.js')
 
-const inDocker        = require('../../data-schemas/song.js')
+const inDocker        = require('../../data-schemas/inDocker.js')
 const databasehost    = inDocker ? 'http://meili:7700' : 'http://localhost:7700' 
 const client          = new MeiliSearch({ host: databasehost })
 const database        = client.index("songs")

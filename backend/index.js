@@ -4,11 +4,8 @@ const cors        = require('cors')
 const fs          = require('fs')
 
 const { setupMeili   }= require('./data-schemas/setupMeili.js')
-//const inDocker        = require('./data-schemas/inDocker.js')
-console.log(fs.existsSync('./data-schemas/inDocker.js'))
-console.log(fs.existsSync('./data-schemas/setupMeili.js'))
+const inDocker        = require('./data-schemas/inDocker.js')
 
-const inDocker        = true
 const DATABASEHOST    = inDocker ? 'http://meili:7700' : 'http://localhost:7700' 
 const setup           = setupMeili(DATABASEHOST)
 const api             = require('./api')
