@@ -14,3 +14,8 @@ docker run -it --init -p 3000:3000 -v ${PWD}/library:/usr/src/library --network 
 # Expose to the internet with localhost.run
 ssh -i /Users/mbinyamin/.ssh/localhostrun  -R stream.pebblez.us:80:localhost:3000 localhost.run
 ```
+
+## hard rebuild
+```
+docker build --pull --no-cache . --tag radio
+```

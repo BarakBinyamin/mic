@@ -1,9 +1,9 @@
 const { MeiliSearch } = require('meilisearch')
 const { Song        } = require('./song.js')
 
-async function main(){
+async function main(DATABASEHOST){
     const client = new MeiliSearch({
-        host: 'http://localhost:7700',
+        host: DATABASEHOST,
     })
     
     // await client.deleteIndex("songs") // for testing clear db

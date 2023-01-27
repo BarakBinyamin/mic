@@ -4,18 +4,18 @@ const { youtubedl   } = require('../../scrapers/youtubedl')
 
 const { Song        } = require('../../data-schemas/song.js')
 const { v4: uuidv4  } = require('uuid')
+
 const fs              = require('fs')
 
 const { dlimg           } = require('../../multimedia/dlimg.js')
 const { writeTags       } = require('../../multimedia/meta.js')
 const { copyToWavAndMp3 } = require('../../multimedia/convert.js')
 
-const client = new MeiliSearch({
-  host: 'http://localhost:7700',
-})
-const database = client.index("songs")
-
-const LIBRARY = '../library'
+const inDocker        = require('../../data-schemas/song.js')
+const databasehost    = inDocker ? 'http://meili:7700' : 'http://localhost:7700' 
+const client          = new MeiliSearch({ host: databasehost })
+const database        = client.index("songs")
+const LIBRARY         = '../library'
 
 const QUEUE      = []
 let   ISUPDATING = false
