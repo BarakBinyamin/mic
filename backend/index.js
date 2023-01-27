@@ -34,7 +34,7 @@ const { Server }            = require("socket.io")
 const io                    = new Server(server)
 const player                = require("./player")
 
-createMetaEmitter(player.eventEmitter, io)
+createMetaEmitter(player, io)
 /* End Setup websockets */
 
 server.listen(PORT, () => {

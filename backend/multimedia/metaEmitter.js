@@ -1,37 +1,30 @@
-const { MeiliSearch } = require('meilisearch')
+const axios = require('axios')
 
-const client = new MeiliSearch({
-    host: 'http://meili:7700',
-  })
-const database = client.index("songs")
+const baseurl = "http://localhost:3000"
 
-async function getSongInfo(id){
-    const   songInfo = database.getDocument(id)
-    return  songInfo
-}
-
-const updateHandler = async (socket) => {
+const updateHandler = async (player, socket) => {
     try{
-        const nowplaying = "" // get now playing
-        const info       = await getSongInfo(nowplaying?.id)
+        const songid     = await player.api.getnowplayingid()
+        const request    = await axios.get(`${baseurl}/api/songinfo?id=${songid}`)
+        const nowplaying = request.data
         const metadata  =  {}
         metadata.artsrc = `/api/img?id=${nowplaying.id}`
-        metadata.artist = `${info.artist}`
-        metadata.title  = `${info.title}`
-        metadata.album  = `${info.album}`
+        metadata.artist = `${nowplaying.artist}`
+        metadata.title  = `${nowplaying.title}`
+        metadata.album  = `${nowplaying.album}`
         socket.emit("update", metadata)
-    }catch{
+    }catch(err){
         console.log(new Error("Something happended"))
-        console.log(nowplaying)
+        console.log(err)
     }
 }
 
-function createMetaEmitter(eventEmitter, io){
+function createMetaEmitter(player, io){
     io.on('connection', (socket) => {   
-        updateHandler(socket)
+        updateHandler(player,socket)
 
-        const hanlderId = () => {updateHandler(socket)}
-        eventEmitter.on("newSong", hanlderId)
+        const hanlderId = () => {updateHandler(player,socket)}
+        player.eventEmitter.on("newSong", hanlderId)
 
         socket.on('end', ()=>{
             eventEmitter.removeListener("newSong",hanlderId)

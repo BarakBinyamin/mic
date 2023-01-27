@@ -1,6 +1,6 @@
 const express     = require('express')
 const router      = express.Router()
-// const fs          = require('fs')
+const fs          = require('fs')
 
 const player  = require('../player')
 const library = require('./library')
@@ -60,6 +60,11 @@ router.get("/img", async (req,res)=>{
 router.get("/search", async (req,res)=>{
     const songRequest = req.query.song
     const results     = await library.searchLibrary(songRequest)
+    res.send(results)
+})
+router.get("/songinfo", async (req,res)=>{
+    const songId      = req.query.id
+    const results     = await library.getSongInfo(songId)
     res.send(results)
 })
 

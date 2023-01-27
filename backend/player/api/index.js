@@ -70,11 +70,12 @@ class API {
         console.log("Loading next track...")
         try{
             if (!this.ISUPDATING){
+                this.ISUPDATING = true
                 const nowplaying    = this.TRACKS.find(track => track.trackid == "main")
                 nowplaying.position = 0
-                this.ISUPDATING = true
-                this.QUEUE.shift(1)     // remove from stack
+                this.QUEUE.shift(1)    // remove from stack
                 const nextSong      = await this.getNextSong()
+                nowplaying.songid   = nextSong
                 await setNowPlaying(nextSong,this.SETTINGS)   // ffmpeg the mp3 into the nowplayling.mp3
                 this.EVENTEMIITER.emit(newSongEvent)          // new song event so that new song event can be sent to host with data
                 this.ISUPDATING = false
@@ -104,7 +105,12 @@ class API {
         this.loadNextTrack()
     }
     // #GET  SONG mp3/wav/m4a
-    // #GET  SONG INFO         
+    // #GET  SONG INFO       
+    // #GET  NOW PLAYING  
+    async getnowplayingid(){
+        const  nowplayingid = this.TRACKS[0].songid
+        return nowplayingid
+    }
     // #ADD  SONG TO LIBRARY   #1
     // #ADD  SONG TO QUEUE     #3
     // #PLAY SONG NOW          #2
