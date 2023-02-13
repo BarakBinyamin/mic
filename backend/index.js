@@ -1,7 +1,13 @@
-const env         = require('dotenv').config()
+const { program } = require('commander');
 const express     = require('express')
 const cors        = require('cors')
-const fs          = require('fs')
+
+program
+  .description('Serves both the frontend and backend services')
+  .requiredOption('-p, --port <port>','The port to serve from');
+program.parse();
+const options = program.opts()
+const PORT    = options.port
 
 const { setupMeili   }= require('./data-schemas/setupMeili.js')
 const inDocker        = require('./data-schemas/inDocker.js')
@@ -10,12 +16,9 @@ const DATABASEHOST    = inDocker ? 'http://meili:7700' : 'http://localhost:7700'
 const setup           = setupMeili(DATABASEHOST)
 const api             = require('./api')
 const WEBAPP          = '../view/dist'
-const UPDATERATE      = '* * * * * *'                    // every second
 
 const jsonTools   = express.json()
 const app         = express()
-
-const PORT        = process.env.PORT
 
 app.use(cors())
 app.use(jsonTools)

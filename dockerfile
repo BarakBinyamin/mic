@@ -15,4 +15,4 @@ COPY    /backend/package.*  .
 RUN     npm install
 COPY    /backend .
 
-ENTRYPOINT [ "node", "index.js" ]
+ENTRYPOINT [ "node", "index.js", "--port", "3000"]

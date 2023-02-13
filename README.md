@@ -7,7 +7,7 @@ A cool web radio station with a siri accessible command api to add, enque, and s
 git clone https://github.com/BarakBinyamin/mic.git
 cd mic
 
-# Launch an elastic search database
+# Launch an elastic search database, also exposes a debugging website @ http://localhost:7700
 docker network create test-network
 docker run --name meili --network test-network -p 7700:7700 -v $PWD/library/meili:/meili_data -d -it getmeili/meilisearch
 
