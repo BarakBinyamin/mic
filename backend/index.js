@@ -23,7 +23,7 @@ app.use('/api', api)
 app.use('/', express.static(WEBAPP))
 
 // app.listen(PORT, () => {
-//     console.log('Pebblez Radio listening on http://localhost:3000');
+//     console.log(`Serving MIC listening on http://localhost:${PORT}`);
 // })
 
 /* Setup websockets for new song updates */
@@ -38,5 +38,5 @@ createMetaEmitter(player, io)
 /* End Setup websockets */
 
 server.listen(PORT, () => {
-  console.log('Pebblez Radio listening on http://localhost:3000');
+  console.log(`Serving MIC on http://localhost:${PORT}`);
 })
