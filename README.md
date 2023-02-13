@@ -16,8 +16,18 @@ docker build --tag radio .
 docker run -it --init -p 3000:3000 -v ${PWD}/library:/usr/src/library --network test-network radio
 
 # Expose to the internet with localhost.run
-ssh -R 80:localhost:8080 nokey@localhost.run
+ssh -R 80:localhost:3000 nokey@localhost.run
 ```
+
+Goto the [localhost:3000](http://localhost:3000) or the link provided by localhost.run to see the main page of the radio
+
+## API
+Testing api routes
+- `/api/add?song=whatever`, trys to find the song and download it to your library from youtube
+- `/api/play?song=whatever`, skips whatever the current song is and plays yours
+- `/api/queue?song=whatever`, adds song to the queue
+- `/api/skip`, skips the current song
+- `/api/listqueue`, shows the queue in json format
 
 ## Technologies
 - docker
@@ -26,5 +36,10 @@ ssh -R 80:localhost:8080 nokey@localhost.run
 - ffmpeg
 - vue
 
-## Resources
-- [Desgin Explained](READMORE.md)
+## Coming soon
+- synchronized library and meilisearch on startup
+- siri shortcuts & shortcut setup
+- seperate concerns where possible
+- more api docs
+- radio controls UI
+- audio visual
