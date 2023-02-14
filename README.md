@@ -21,6 +21,14 @@ ssh -R 80:localhost:3000 nokey@localhost.run
 
 Goto the [localhost:3000](http://localhost:3000) or the link provided by localhost.run to see the main page of the radio
 
+## Directory
+| Name                         | Purpose                              | 
+| :--                          | :--                                  |
+|[backend](backend)           | Most of the functionality behind this project|
+|[view](view)                 | Where the UI is developed            |
+|[library](library)           | Where media lives                    |
+|[dockerfile](dockerfile)     | Docker environment setup file        |
+
 ## API
 Testing api routes
 - `/api/add?song=whatever`, trys to find the song and download it to your library from youtube
@@ -43,3 +51,4 @@ Testing api routes
 - more api docs
 - radio controls UI
 - audio visual
+
