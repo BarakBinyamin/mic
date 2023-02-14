@@ -10,3 +10,6 @@ Exposes controls for the application
 - `/search?song=whatever`, searches through library for a song
 - `/songinfo?id=songid`, gives info for one song by id
 
+ffmpeg -i /Users/mbinyamin/Downloads/mic.mp4 -vf "fps=10,scale=1000:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 /Users/mbinyamin/Downloads/mic.gif
+
+    ffmpeg -i /Users/mbinyamin/Downloads/mic.mp4 /Users/mbinyamin/Downloads/mic.gif

@@ -1,6 +1,8 @@
 # mic
 A cool web radio station with a siri accessible command api to add, enque, and skip songs
 
+<img width=100% src="mic.gif"/>
+
 ## Quickstart
 ```bash
 # Get this project
