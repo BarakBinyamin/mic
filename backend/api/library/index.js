@@ -21,8 +21,6 @@ const QUEUE      = []
 let   ISUPDATING = false
 
 class library{
-/* RADIO CONTROLS */
-
     // async getLastSongInQueueFromFirst(first_id){
     //     const song = await database.getDocument(first_id)
     //     const next = song?.upnext
@@ -112,6 +110,9 @@ class library{
     async searchGeninus(stringToSearch){
         return await genius(stringToSearch)
     }
+    // async searchYoutube(stringToSearch){
+
+    // }
     async searchLibrary(searchString){
         const  results = await database.search(searchString)
         return results
@@ -120,9 +121,6 @@ class library{
         const  songInfo = database.getDocument(id)
         return songInfo
     }
-    // async searchYoutube(stringToSearch){
-
-    // }
     // async add(song){
 
     // }

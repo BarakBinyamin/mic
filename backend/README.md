@@ -2,8 +2,8 @@
 Traditionally programs like icecast are used to to mix and stream audio, but this project takes a new approach
 
 ### Directory
-| Name                         | Purpose                              | 
-| :--                          | :--                                  |
+| Name                        | Purpose                              | 
+| :--                         | :--                                  |
 |[api](api)                   | Exposes controls for the application |
 |[data-schemas](data-schemas) | Templates and setup scripts for data schemas|
 |[multimedia](multimedia)     | Tools for coverting overlaying and filtering media |

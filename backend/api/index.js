@@ -22,10 +22,17 @@ router.get('/play', async (req,res)=>{
     const songRequest = req.query.song
     const results     = await library.searchLibrary(songRequest)
     const song        = results?.hits[0]
+    let   response    = ""
     if (song){
-        await player.api.playnow(song)
+        if (song?.status){
+            await player.api.playnow(song)
+            response =  `You got it! Now playing ${song.title} by ${song.artist}`
+        }else{
+            response = `${song.title} by ${song.artist} exists in the library, but it appears to have some missing data, so we can't play it` 
+        }
+    }else{
+        response = "Na, we couldn't find that song"
     }
-    const msg         = song ? `You got it! Now playing ${song.title} by ${song.artist}` : "Na, we couldn't find that song"
     res.send(msg)
 })
 // router.get('/queue', async (req,res)=>{

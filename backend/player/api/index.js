@@ -5,12 +5,12 @@ const newSongEvent    = "newSong"
 
 class API {
     constructor(QUEUE, SETTINGS, TRACKS, EVENTEMIITER, WORKINGDIRECTORY, DEFAULT_TRACK_ID, SAMPLESPERPACKET){
-        this.QUEUE        = QUEUE
-        this.TRACKS       = TRACKS
-        this.SETTINGS     = SETTINGS
-        this.EVENTEMIITER = EVENTEMIITER
-        this.WORKINGDIRECTORY = WORKINGDIRECTORY
-        this.DEFAULT_TRACK_ID = DEFAULT_TRACK_ID
+        this.QUEUE        = QUEUE                // List of type <Song> for what to play next, starting with what is now playng
+        this.TRACKS       = TRACKS               // metadata about currently playing tracks
+        this.SETTINGS     = SETTINGS             // fadein fadeout settings
+        this.EVENTEMIITER = EVENTEMIITER         // Used to Emit an event when a song ends and a new song begins
+        this.WORKINGDIRECTORY = WORKINGDIRECTORY // Directory to place playing mixed audio into
+        this.DEFAULT_TRACK_ID = DEFAULT_TRACK_ID // Fallback track when nothing is playing, there must always be something playing 
         this.SAMPLESPERPACKET = SAMPLESPERPACKET // (# of samples in mp3 != # of bytes) due to encoding, but it's about ==
         this.ISUPDATEING      = false
     }
