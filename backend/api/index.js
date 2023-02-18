@@ -33,7 +33,7 @@ router.get('/play', async (req,res)=>{
     }else{
         response = "Na, we couldn't find that song"
     }
-    res.send(msg)
+    res.send(response)
 })
 // router.get('/queue', async (req,res)=>{
 //     const songRequest = req.query.song
