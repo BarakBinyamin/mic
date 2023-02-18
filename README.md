@@ -17,7 +17,7 @@ docker run --name meili --network test-network -p 7700:7700 -v $PWD/library/meil
 docker build --tag radio .
 docker run -d -p 3000:3000 -v ${PWD}/library:/usr/src/library --network test-network radio
 
-# Expose to the internet with localhost.run
+# Test Exposing to the internet with localhost.run
 ssh -R 80:localhost:3000 nokey@localhost.run
 ```
 
