@@ -24,11 +24,12 @@ ssh -R 80:localhost:3000 nokey@localhost.run
 Goto the [localhost:3000](http://localhost:3000) or the link provided by localhost.run to see the main page of the radio
 
 ## Directory
-| Name                         | Purpose                              | 
-| :--                          | :--                                  |
+| Name                        | Purpose                              | 
+| :--                         | :--                                  |
 |[backend](backend)           | Most of the functionality behind this project|
-|[view](view)                 | Where the UI is developed            |
 |[library](library)           | Where media lives                    |
+|[shortcuts](shortcuts)       | Siri shortcuts for the radio         |
+|[view](view)                 | Where the UI is developed            |
 |[dockerfile](dockerfile)     | Docker environment setup file        |
 
 ## API
@@ -48,7 +49,6 @@ Testing api routes
 
 ## Coming soon
 - synchronized library and meilisearch on startup
-- siri shortcuts & shortcut setup
 - seperate concerns where possible
 - more api docs
 - radio controls UI
