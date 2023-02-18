@@ -54,3 +54,6 @@ Testing api routes
 - radio controls UI
 - audio visual
 
+## Bug fixes
+- Fix the ratio of mp3 bytes to seconds to prevent stalls
+
