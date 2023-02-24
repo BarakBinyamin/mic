@@ -15,7 +15,7 @@ docker run --name meili --network test-network -p 7700:7700 -v $PWD/library/meil
 
 # Build and run the radio, for a ctrl-c'able mode, switch the -d with -it --init
 docker build --tag radio .
-docker run -d -p 3000:3000 -v ${PWD}/library:/usr/src/library --network test-network radio
+docker run -d -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network radio
 
 # Test exposing to the internet with localhost.run
 ssh -R 80:localhost:3000 nokey@localhost.run
