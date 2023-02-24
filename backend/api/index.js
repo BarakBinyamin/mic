@@ -35,12 +35,23 @@ router.get('/play', async (req,res)=>{
     }
     res.send(response)
 })
-// router.get('/queue', async (req,res)=>{
-//     const songRequest = req.query.song
-//     const status      = await library.addtoqueue(this.nowPlaying,this.needle,this.settings,songRequest)
-//     const msg         = status ? `You got it! Added ${status.title} by ${status.artist} to queue` : "Na, we couldn't find that song"
-//     res.send(msg)
-// })
+router.get('/queue', async (req,res)=>{
+    const songRequest = req.query.song
+    const results     = await library.searchLibrary(songRequest)
+    const song        = results?.hits[0]
+    let   response    = ""
+    if (song){
+        if (song?.status){
+            await player.api.enque(song)
+            response =  `You got it! Added ${song.title} by ${song.artist} to the queue`
+        }else{
+            response = `${song.title} by ${song.artist} exists in the library, but it appears to have some missing data, so we can't play it` 
+        }
+    }else{
+        response = "Na, we couldn't find that song"
+    }
+    res.send(response)
+})
 router.get('/queuelist', async (req,res)=>{
     const    queue      = await player.api.getQueue()
     res.send(queue)

@@ -113,6 +113,15 @@ class API {
     }
     // #ADD  SONG TO LIBRARY   #1
     // #ADD  SONG TO QUEUE     #3
+    async enque(song){
+        if (this.QUEUE.length==0){
+            this.QUEUE.push(song) // we have to do this twice because whitenoise is not listed in the queue
+            this.QUEUE.push(song) // a song does not leave the queue unti it is done playing
+            await this.skip()     // play the song if it's the only one in the queue
+        }else{
+            this.QUEUE.push(song)
+        }
+    }
     // #PLAY SONG NOW          #2
     async playnow(song){
         if (this.QUEUE.length==0){
