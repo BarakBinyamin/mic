@@ -130,10 +130,11 @@ class library{
 
 /* AUTO ADD */
     async addLucky(stringToSearch,res){
+        let song = ""
         try{
             const data     =  await this.searchGeninus(stringToSearch)            // search genius
             if (data.type != "song"){console.log("addLucky: Couldn't find genius data");res.send("Sorry, we couldn't find that song on genius.com"); return false}
-            const song = new Song()
+            song = new Song()
                 song.id          = uuidv4()
                 song.title       = data.info.title
                 song.album       = data.info.album
@@ -159,13 +160,18 @@ class library{
             await youtubedl(`${LIBRARY}/${song.id}`, song.youtube) // youtubedl the youtube song 
             await dlimg(data.info.artwork,song.id)                 // download and format the album art with ffmpeg
             await copyToWavAndMp3(song.id)                         // create wav and mp3's
-            await writeTags(`${LIBRARY}/${song.id}.m4a`, song)     // add metatags to the song
+            await writeTags(`${LIBRARY}/${song.id}.m4a`, song).catch(
+                ()=>{console.log('adding meta tags to m4a failed')
+            })                                                     // add metatags to m4a version of the song
             // if success            // update the song in the database
-            song.isloading   = false // is fetching
+            song.isloading   = false // not fetching anymore
             song.status      = true  // if isloading==false, this indicate if fetching was successful
             database.updateDocuments([song])
         }
         catch(error){
+            song.isloading   = false       // not fetching anymore, but 
+            song.status      = false       // failed to download song
+            database.updateDocuments([song])
             console.log(error)
             return false
         }
