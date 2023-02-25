@@ -1,11 +1,11 @@
 const fs         = require('fs')
 const {execSync} = require('child_process')
 
-async function addCoverImg(pathToM4a, tags){
+async function addCoverImg(pathToM4a, song){
     let command = `AtomicParsley "${pathToM4a}"  --overWrite `
     try {
-        if (tags.artwork){
-            const artwork = tags.id
+        if (song.artwork){
+            const artwork = song.id
             if (fs.existsSync(`../library/${artwork}.jpg`,{root:'.'})){
                 command = command + `--artwork "../library/${artwork}.jpg"`
             }else{
@@ -18,31 +18,31 @@ async function addCoverImg(pathToM4a, tags){
     }
 }
 
-async function writeTags(pathToM4a, tags){
+async function writeTags(pathToM4a, song){
     let command = `AtomicParsley "${pathToM4a}"  --overWrite `
     try{
-        if (tags.title){
-            const title = tags.title
+        if (song.title){
+            const title = song.title
             command = command + ` --title "${title}"`
         }
-        if (tags.artist){
-            const artist = tags.artist
+        if (song.artist){
+            const artist = song.artist
             command = command + ` --artist "${artist}"`
         }
-        if (tags.album){
-            const album = tags.album
+        if (song.album){
+            const album = song.album
             command = command + ` --album  "${album}"`
         }
-        if (tags.track){
-            const track = tags.track
+        if (song.track){
+            const track = song.track
             command = command + ` --track  "${track}"`
         }
-        if (tags.lyrics){
-            const lyrics = tags.lyrics
+        if (song.lyrics){
+            const lyrics = song.lyrics
             command = command + ` --lyrics "${lyrics}"`
         }
         result = execSync(command, {stdio: 'inherit'})
-        await addCoverImg()
+        await addCoverImg(pathToM4a,song)
     }catch(error){
         console.log(error)
     }

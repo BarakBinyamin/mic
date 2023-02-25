@@ -144,6 +144,8 @@ class library{
                 song.artwork     = data.info.artwork
                 song.youtube     = data.info.youtubelink
                 song.spotify     = data.info.spotifyUuid
+                song.isloading   = ture                                     // is fetching
+                song.status      = false                                    // if isloading==false, this indicates if fetching was successful
             if (!song.youtube){return false}
             
             const searchResults = await this.searchLibrary(data.info.title) // if song already exists exit
@@ -165,7 +167,7 @@ class library{
             })                                                     // add metatags to m4a version of the song
             // if success            // update the song in the database
             song.isloading   = false // not fetching anymore
-            song.status      = true  // if isloading==false, this indicate if fetching was successful
+            song.status      = true  // if isloading==false, this indicates if fetching was successful
             database.updateDocuments([song])
         }
         catch(error){
