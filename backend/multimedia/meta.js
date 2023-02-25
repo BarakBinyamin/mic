@@ -1,11 +1,8 @@
 const fs         = require('fs')
 const {execSync} = require('child_process')
 
-// brew install atomicparsley 
-// sudo apt-get install atomicparsley
- 
-async function writeTags(pathToM4a, tags){
-    let command = `AtomicParsley "${pathToM4a}"  --overWrite ` // atomicparsley on mac
+async function addCoverImg(pathToM4a, tags){
+    let command = `AtomicParsley "${pathToM4a}"  --overWrite `
 
     if (tags.artwork){
         const artwork = tags.id
@@ -15,6 +12,13 @@ async function writeTags(pathToM4a, tags){
             console.log("Img didn't exists")
         }
     }
+
+    result = execSync(command, {stdio: 'inherit'})
+}
+
+async function writeTags(pathToM4a, tags){
+    let command = `AtomicParsley "${pathToM4a}"  --overWrite `
+
     if (tags.title){
         const title = tags.title
         command = command + ` --title "${title}"`
@@ -35,7 +39,8 @@ async function writeTags(pathToM4a, tags){
         const lyrics = tags.lyrics
         command = command + ` --lyrics "${lyrics}"`
     }
-    const result  = execSync(command, {encoding: 'utf8'})
+    result = execSync(command, {stdio: 'inherit'})
+    await addCoverImg()
 }
  
 module.exports.writeTags = writeTags
