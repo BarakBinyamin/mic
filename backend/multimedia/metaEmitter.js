@@ -1,8 +1,6 @@
 const axios = require('axios')
 
-const baseurl = "http://localhost:3000"
-
-const updateHandler = async (player, socket) => {
+const updateHandler = async (player, socket, baseurl) => {
     try{
         const songid     = await player.api.getnowplayingid()
         const request    = await axios.get(`${baseurl}/api/songinfo?id=${songid}`)
@@ -19,11 +17,11 @@ const updateHandler = async (player, socket) => {
     }
 }
 
-function createMetaEmitter(player, io){
+function createMetaEmitter(player, io, baseurl){
     io.on('connection', (socket) => {   
-        updateHandler(player,socket)
+        updateHandler(player,socket,baseurl)
 
-        const hanlderId = () => {updateHandler(player,socket)}
+        const hanlderId = () => {updateHandler(player,socket,baseurl)}
         player.eventEmitter.on("newSong", hanlderId)
 
         socket.on('end', ()=>{

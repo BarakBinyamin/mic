@@ -36,8 +36,9 @@ const server                = http.createServer(app)
 const { Server }            = require("socket.io")
 const io                    = new Server(server)
 const player                = require("./player")
+const baseurl               = `http://localhost:${port}`
 
-createMetaEmitter(player, io)
+createMetaEmitter(player, io, baseurl)
 /* End Setup websockets */
 
 server.listen(PORT, () => {
