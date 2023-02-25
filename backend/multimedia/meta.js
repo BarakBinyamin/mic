@@ -3,44 +3,49 @@ const {execSync} = require('child_process')
 
 async function addCoverImg(pathToM4a, tags){
     let command = `AtomicParsley "${pathToM4a}"  --overWrite `
-
-    if (tags.artwork){
-        const artwork = tags.id
-        if (fs.existsSync(`../library/${artwork}.jpg`,{root:'.'})){
-            command = command + `--artwork "../library/${artwork}.jpg"`
-        }else{
-            console.log("Img didn't exists")
+    try {
+        if (tags.artwork){
+            const artwork = tags.id
+            if (fs.existsSync(`../library/${artwork}.jpg`,{root:'.'})){
+                command = command + `--artwork "../library/${artwork}.jpg"`
+            }else{
+                console.log("Img didn't exists")
+            }
         }
+        result = execSync(command).toString()
+    }catch(error){
+        console.log(error)
     }
-
-    result = execSync(command, {stdio: 'inherit'})
 }
 
 async function writeTags(pathToM4a, tags){
     let command = `AtomicParsley "${pathToM4a}"  --overWrite `
-
-    if (tags.title){
-        const title = tags.title
-        command = command + ` --title "${title}"`
+    try{
+        if (tags.title){
+            const title = tags.title
+            command = command + ` --title "${title}"`
+        }
+        if (tags.artist){
+            const artist = tags.artist
+            command = command + ` --artist "${artist}"`
+        }
+        if (tags.album){
+            const album = tags.album
+            command = command + ` --album  "${album}"`
+        }
+        if (tags.track){
+            const track = tags.track
+            command = command + ` --track  "${track}"`
+        }
+        if (tags.lyrics){
+            const lyrics = tags.lyrics
+            command = command + ` --lyrics "${lyrics}"`
+        }
+        result = execSync(command, {stdio: 'inherit'})
+        await addCoverImg()
+    }catch(error){
+        console.log(error)
     }
-    if (tags.artist){
-        const artist = tags.artist
-        command = command + ` --artist "${artist}"`
-    }
-    if (tags.album){
-        const album = tags.album
-        command = command + ` --album  "${album}"`
-    }
-    if (tags.track){
-        const track = tags.track
-        command = command + ` --track  "${track}"`
-    }
-    if (tags.lyrics){
-        const lyrics = tags.lyrics
-        command = command + ` --lyrics "${lyrics}"`
-    }
-    result = execSync(command, {stdio: 'inherit'})
-    await addCoverImg()
 }
  
 module.exports.writeTags = writeTags
