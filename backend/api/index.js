@@ -5,6 +5,8 @@ const fs          = require('fs')
 const player  = require('../player')
 const library = require('./library')
 
+router.use(express.json()) // add json support to router
+
 // Main Streaming Route
 router.get("/nowPlaying", async (req,res)=>{
     res.writeHead(200,"OK",{"Content-Type":"audio/mpeg"})
