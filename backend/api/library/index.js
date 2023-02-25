@@ -144,7 +144,7 @@ class library{
                 song.artwork     = data.info.artwork
                 song.youtube     = data.info.youtubelink
                 song.spotify     = data.info.spotifyUuid
-                song.isloading   = ture                                     // is fetching
+                song.isloading   = true                                     // is fetching
                 song.status      = false                                    // if isloading==false, this indicates if fetching was successful
             if (!song.youtube){return false}
             
