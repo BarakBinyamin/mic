@@ -130,6 +130,7 @@ class library{
 
 /* AUTO ADD */
     async addLucky(stringToSearch,res){
+        console.log(`Recieved request to add ${stringToSearch}...`)
         let song = ""
         try{
             const data     =  await this.searchGeninus(stringToSearch)            // search genius
@@ -158,6 +159,7 @@ class library{
                 }
             }
             res.send(`Adding ${song.title} by ${song.artist} to the library`)
+            console.log(`Adding ${song.title} by ${song.artist} to the library`)
             database.addDocuments([song])                          // add the song to the database
             await youtubedl(`${LIBRARY}/${song.id}`, song.youtube) // youtubedl the youtube song 
             await dlimg(data.info.artwork,song.id)                 // download and format the album art with ffmpeg
@@ -169,8 +171,10 @@ class library{
             song.isloading   = false // not fetching anymore
             song.status      = true  // if isloading==false, this indicates if fetching was successful
             database.updateDocuments([song])
+            console.log(`Finished adding ${song.title} by ${song.artist} to the library`)
         }
         catch(error){
+            console.log(`Error processing request to add ${stringToSearch}`)
             if (typeof(song)!='string'){
                 song.isloading   = false         // not fetching anymore, but 
                 song.status      = false         // failed to download song
