@@ -175,6 +175,9 @@ class library{
                 song.isloading   = false         // not fetching anymore, but 
                 song.status      = false         // failed to download song
                 database.updateDocuments([song])
+                res.send(error)
+            }else{
+                res.send(error)
             }
             console.log(error)
             return false
