@@ -15,6 +15,7 @@ async function addCoverImg(pathToM4a, song){
         result = execSync(command).toString()
     }catch(error){
         console.log(error)
+        console.log(error?.output?.[1]?.toString())
     }
 }
 
@@ -45,6 +46,7 @@ async function writeTags(pathToM4a, song){
         await addCoverImg(pathToM4a,song)
     }catch(error){
         console.log(error)
+        console.log(error?.output?.[1]?.toString())
     }
 }
  

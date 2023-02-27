@@ -171,9 +171,11 @@ class library{
             database.updateDocuments([song])
         }
         catch(error){
-            song.isloading   = false       // not fetching anymore, but 
-            song.status      = false       // failed to download song
-            database.updateDocuments([song])
+            if (typeof(song)!='string'){
+                song.isloading   = false         // not fetching anymore, but 
+                song.status      = false         // failed to download song
+                database.updateDocuments([song])
+            }
             console.log(error)
             return false
         }
