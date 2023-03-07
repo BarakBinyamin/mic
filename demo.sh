@@ -4,8 +4,13 @@ demo(){
     curl "http://localhost/api/add?song=ThePlanByWaveshaper"
     printf "\n"
     sleep 5
-    curl "http://localhost/api/play?song=The-Plan"
-    printf "\n\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
+    out=`curl --silent "http://localhost/api/play?song=The-Plan"`
+    if [[ "${out}" =~ "You got it!" ]] ;then
+        printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
+    else
+        printf "\nWaiting for the song to download...\n"
+        demo
+    fi
 }
 
 # Could be used to automatically open a default broswer using the default open command
