@@ -24,6 +24,10 @@ cd mic
 # Launch the radio and database on ports 80 & 7700
 docker compose up -d 
 
+# Add and play "The Plan" by waveshaper
+bash demo.sh
+```
+```bash
 # Test exposing to the internet with localhost.run
 ssh -R 80:localhost:80 nokey@localhost.run
 ```
@@ -79,6 +83,7 @@ docker run -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network -d
 ### Known bugs
 - Fix the ratio of mp3 bytes to seconds to prevent stalls
 - Handle unlisted youtube videos when auto adding songs
+- Colorize text based on background
 
 # Motivation
 I enjoy listenting to music, and I wanted to share what I was listening to with my freinds and family.
