@@ -1,0 +1,28 @@
+services:
+  # Awesome Search Engine + Database, debugging website @ http://localhost:7700
+  meili:
+    image: getmeili/meilisearch
+    ports:
+      - 7700:7700
+    networks:
+      - network-one
+    volumes:
+      - ./library/meili:/meili_data
+  # The radio
+  radio:
+    build:
+      context: './'
+    command: --port 80
+    depends_on:
+      - meili
+    ports:
+      - 80:80
+    volumes:
+      - ./library:/usr/src/library
+    networks:
+      -  network-one
+# Allow the radio and database to talk through docker 
+networks:
+  network-one: {}
+
+
