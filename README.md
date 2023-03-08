@@ -71,14 +71,15 @@ docker run -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network -d
 
 # Features and Bugs
 ### Coming soon
-- Synchronized library and meilisearch on startup
-- Seperate concerns where possible
-- More api docs
-- Radio controls UI, with voice over
-- Visuals for the aduio 
-- Message to let poeple know when song is buffering
-- **Up next** on the bottom of the main page
-- [Click here](https://raw.githubusercontent.com/Barakvinyamin/mic/main/Demo.mp4) to see a video demo
+- [x] Synchronized library and meilisearch on startup
+- [x] Docker Compose to simplify startup
+- [ ] Seperate concerns where possible
+- [ ] More api docs
+- [ ] Radio controls UI, with voice over
+- [ ] Visuals for the aduio 
+- [ ] Message to let poeple know when song is buffering
+- [ ] **Up next** on the bottom of the main page
+- [ ]  [Click here](https://raw.githubusercontent.com/Barakvinyamin/mic/main/Demo.mp4) to see a video demo
 
 ### Known bugs
 - Fix the ratio of mp3 bytes to seconds to prevent stalls
