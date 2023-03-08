@@ -3,8 +3,8 @@ const { Song        } = require('./song.js')
 const fs              = require('fs')
 let parseFile = ""; import('music-metadata').then(mod => parseFile = mod.parseFile)
 
-LIBRARY    = "../library"
-WHITENOISE = "whitenoise"
+const LIBRARY    = "../library"
+const WHITENOISE = "whitenoise"
 
 async function main(DATABASEHOST){
     const client = new MeiliSearch({
