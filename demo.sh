@@ -1,16 +1,25 @@
 #!/bin/sh
-demo(){
-    printf "\nAttempting to add \"The Plan\" By Waveshaper...\n"
-    curl "http://localhost/api/add?song=ThePlanByWaveshaper"
+add(){
+    curl "http://localhost/api/add?song=$1"
     printf "\n"
+}
+
+play(){
     sleep 5
-    out=`curl --silent "http://localhost/api/play?song=The-Plan"`
+    out=`curl --silent "http://localhost/api/play?song=$1"`
     if [[ "${out}" =~ "You got it!" ]] ;then
+        printf "${out}\n"
         printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
     else
         printf "\nWaiting for the song to download...\n"
-        demo
+        play $1
     fi
+}
+
+demo(){
+    printf "\nAttempting to add \"The Plan\" By Waveshaper...\n"
+    add  "The+Plan+by+Waveshaper"
+    play "The+Plan+by+Waveshaper"
 }
 
 # Could be used to automatically open a default broswer using the default open command
