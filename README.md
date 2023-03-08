@@ -1,4 +1,4 @@
-# mic
+# mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾
 A voice controllable internet radio station.  [Follow the quickstart](#Developers) to run this project with docker
 
 - [Developers info](#developers)
