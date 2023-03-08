@@ -86,9 +86,9 @@ docker run -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network -d
 - Colorize text based on background
 
 # Motivation
-I enjoy listenting to music, and I wanted to share what I was listening to with my freinds and family.
+I enjoy listenting to music, and I wanted to share what I was listening to with my freinds and family
 
-This project was a also great opportunity to develop an application that was:
+This project was also a great opportunity to develop an application that was:
 - 🐳**Containerized**
 - ▼ **Muti-Paradigm**
 - ⚡**Blazing Fast**
