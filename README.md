@@ -1,13 +1,18 @@
 # mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾
 A voice controllable internet radio station
 
-- [Developers info](#developers)
-    - [Quickstart](#quickstart)
-    - [Project Directory](#project-directory)
-    - [API](#api)
-- [Motivation](#motivation)
+- [mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾](#mic-️️️)
+- [Developers](#developers)
+  - [Requirements](#requirements)
+  - [Quickstart](#quickstart)
+  - [Project Directory](#project-directory)
+  - [API](#api)
+  - [Docker](#docker)
 - [Technologies](#technologies)
 - [Features and Bugs](#features-and-bugs)
+    - [Coming soon](#coming-soon)
+    - [Known bugs](#known-bugs)
+- [Motivation](#motivation)
 - [References](#references)
 
 # Developers
@@ -35,13 +40,15 @@ ssh -R 80:localhost:80 nokey@localhost.run
 Goto the [localhost:80](http://localhost:80) or the link provided by localhost.run to see the main page of the radio
 
 ## Project Directory
-| Name                        | Purpose                              | 
-| :--                         | :--                                  |
-|[backend](backend)           | Most of the functionality behind this project|
-|[library](library)           | Where media lives                    |
-|[shortcuts](shortcuts)       | Siri shortcuts for the radio         |
-|[view](view)                 | Where the UI is developed            |
-|[dockerfile](dockerfile)     | Docker environment setup file        |
+| Name                                   | Purpose                                       | 
+| :--                                    | :--                                           |
+|[backend](backend)                      | Most of the functionality behind this projects|
+|[library](library)                      | Where media lives                             |
+|[shortcuts](shortcuts)                  | Siri shortcuts for the radio                  |
+|[view](view)                            | Where the UI is developed                     |   
+|[demo.sh](docker-compose.yml)           | The demo script                               |
+|[dockerfile](dockerfile)                | Docker container setup file                   |
+|[docker-compose.yml](docker-compose.yml)| Manages multiple docker contaimers            |
 
 ## API 
 - `/api/add?song=whatever`, trys to find the song and download it to your library from youtube
