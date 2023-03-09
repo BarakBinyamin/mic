@@ -42,7 +42,6 @@ check_system(){
         ;;
 
     # Add here more strings to compare
-    # See correspondence table at the bottom of this answer
 
     *)
         echo 'Other OS' 
