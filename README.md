@@ -1,7 +1,7 @@
 # mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾
 A voice controllable internet radio station
 
-- [Developers](#developers)
+- [Developers info](#developers)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
   - [Project Directory](#project-directory)
