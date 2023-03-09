@@ -1,7 +1,6 @@
 # mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾
 A voice controllable internet radio station
 
-- [mic 🎤📼🛼📺🎞️🕹️👾☎️🎸💿💾](#mic-️️️)
 - [Developers](#developers)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
@@ -10,8 +9,6 @@ A voice controllable internet radio station
   - [Docker](#docker)
 - [Technologies](#technologies)
 - [Features and Bugs](#features-and-bugs)
-    - [Coming soon](#coming-soon)
-    - [Known bugs](#known-bugs)
 - [Motivation](#motivation)
 - [References](#references)
 
