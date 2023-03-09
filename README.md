@@ -39,7 +39,7 @@ Goto the [localhost:80](http://localhost:80) or the link provided by localhost.r
 ## Project Directory
 | Name                                   | Purpose                                       | 
 | :--                                    | :--                                           |
-|[backend](backend)                      | Most of the functionality behind this projects|
+|[backend](backend)                      | Most of the functionality behind this project |
 |[library](library)                      | Where media lives                             |
 |[shortcuts](shortcuts)                  | Siri shortcuts for the radio                  |
 |[view](view)                            | Where the UI is developed                     |   
