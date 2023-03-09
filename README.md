@@ -43,7 +43,7 @@ Goto the [localhost:80](http://localhost:80) or the link provided by localhost.r
 |[library](library)                      | Where media lives                             |
 |[shortcuts](shortcuts)                  | Siri shortcuts for the radio                  |
 |[view](view)                            | Where the UI is developed                     |   
-|[demo.sh](docker-compose.yml)           | The demo script                               |
+|[demo.sh](demo.sh)                      | The demo script                               |
 |[dockerfile](dockerfile)                | Docker container setup file                   |
 |[docker-compose.yml](docker-compose.yml)| Manages multiple docker contaimers            |
 
