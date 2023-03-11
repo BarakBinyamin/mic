@@ -26,8 +26,8 @@ cd mic
 # Launch the radio and database on ports 80 & 7700
 docker compose up -d 
 
-# Add and play "The Plan" by waveshaper
-bash demo.sh
+# Add and play "This Love" by Marroon 5
+bash demo.sh "This Love by Marroon 5"
 ```
 ```bash
 # Test exposing to the internet with localhost.run
@@ -45,7 +45,7 @@ Goto the [localhost:80](http://localhost:80) or the link provided by localhost.r
 |[view](view)                            | Where the UI is developed                     |   
 |[demo.sh](demo.sh)                      | The demo script                               |
 |[dockerfile](dockerfile)                | Docker container setup file                   |
-|[docker-compose.yml](docker-compose.yml)| Manages multiple docker contaimers            |
+|[docker-compose.yml](docker-compose.yml)| Manages multiple docker containers            |
 
 ## API 
 - `/api/add?song=whatever`, trys to find the song and download it to your library from youtube

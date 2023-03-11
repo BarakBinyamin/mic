@@ -1,12 +1,16 @@
 #!/bin/sh
 add(){
-    curl "http://localhost/api/add?song=$1"
+    out=`curl --silent --get --data-urlencode "song=${1}" "http://localhost/api/add"`
+    printf "${out}\n"
+    if [[ "${out}" =~ "we couldn't find that song on genius.com" ]] ;then
+        exit 1
+    fi
     printf "\n"
 }
 
 play(){
     sleep 5
-    out=`curl --silent "http://localhost/api/play?song=$1"`
+    out=`curl --silent --get --data-urlencode "song=${1}" "http://localhost/api/play"`
     if [[ "${out}" =~ "You got it!" ]] ;then
         printf "${out}\n"
         printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
@@ -17,9 +21,10 @@ play(){
 }
 
 demo(){
-    printf "\nAttempting to add \"The Plan\" By Waveshaper...\n"
-    add  "The+Plan+by+Waveshaper"
-    play "The+Plan+by+Waveshaper"
+    songToPlay="${1}"
+    printf "\nAttempting to add \"${songToPlay}\"...\n"
+    add  "$songToPlay"
+    play "$songToPlay"
 }
 
 # Could be used to automatically open a default broswer using the default open command
@@ -49,4 +54,4 @@ check_system(){
     esac
 }
 
-demo
+demo "${1}"
