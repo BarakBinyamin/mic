@@ -16,7 +16,8 @@ play(){
         printf "${out}\n"
         printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
     elif [[ $n -gt 3 ]]; then
-        demo $1
+        printf "Waiting for song to download..."
+        demo "${1}"
     else
         play "${1}" $((n+1))
     fi
