@@ -9,13 +9,16 @@ add(){
 }
 
 play(){
+    n=$2
     sleep 5
     out=`curl --silent --get --data-urlencode "song=${1}" "http://localhost/api/play"`
-    if [[ "${out}" =~ "You got it!" ]] ;then
+    if [[ "${out}" =~ "You got it!" ]];then
         printf "${out}\n"
         printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
+    elif [[ $n -gt 3 ]]; then
+        demo $1
     else
-        demo "${1}"
+        play "${1}" $((n+1))
     fi
 }
 
