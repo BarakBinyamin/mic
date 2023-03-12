@@ -15,8 +15,7 @@ play(){
         printf "${out}\n"
         printf "\n%s\033[0;36m%s\033[0;0m\n\n"  "Check out the radio @ " "http://localhost"
     else
-        printf "\nWaiting for the song to download...\n"
-        play $1
+        demo "${1}"
     fi
 }
 
