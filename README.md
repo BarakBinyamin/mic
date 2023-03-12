@@ -24,7 +24,8 @@ git clone https://github.com/BarakBinyamin/mic.git
 cd mic
 
 # Launch the radio and database on ports 80 & 7700
-docker compose up -d 
+platform=`bash platform.sh`
+PLATFORM="${platform}" docker compose up -d 
 
 # Add and play "This Love" by Marroon 5
 bash demo.sh "This Love by Marroon 5"

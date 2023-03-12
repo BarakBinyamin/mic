@@ -10,7 +10,7 @@ services:
       - ./library/meili:/meili_data
   # The radio
   radio:
-    platform: linux/amd64 # Forces docker to build correctly on m1 mac
+    platform: ${PLATFORM}
     build:
       context: './'
     command: --port 80
