@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 add(){
     out=`curl --silent --get --data-urlencode "song=${1}" "http://localhost/api/add"`
     printf "${out}\n"
