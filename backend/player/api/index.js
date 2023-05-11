@@ -1,14 +1,13 @@
 const fs              = require('fs')
 const { getOneSecond }= require('../../multimedia/getOneSecond.js')
 const { setNowPlaying}=require('../../multimedia/setNowPlaying.js')
-const newSongEvent    = "newSong"
 
 class API {
-    constructor(QUEUE, SETTINGS, TRACKS, EVENTEMIITER, WORKINGDIRECTORY, DEFAULT_TRACK_ID, SAMPLESPERPACKET){
+    constructor(QUEUE, SETTINGS, TRACKS, PLAYER, WORKINGDIRECTORY, DEFAULT_TRACK_ID, SAMPLESPERPACKET){
         this.QUEUE        = QUEUE                // List of type <Song> for what to play next, starting with what is now playng
         this.TRACKS       = TRACKS               // metadata about currently playing tracks
         this.SETTINGS     = SETTINGS             // fadein fadeout settings
-        this.EVENTEMIITER = EVENTEMIITER         // Used to Emit an event when a song ends and a new song begins
+        this.PLAYER       = PLAYER               // Used to Emit an event when a song ends and a new song begins
         this.WORKINGDIRECTORY = WORKINGDIRECTORY // Directory to place playing mixed audio into
         this.DEFAULT_TRACK_ID = DEFAULT_TRACK_ID // Fallback track when nothing is playing, there must always be something playing 
         this.SAMPLESPERPACKET = SAMPLESPERPACKET // (# of samples in mp3 != # of bytes) due to encoding, but it's about ==
@@ -60,7 +59,7 @@ class API {
         }
     }
 
-    async getNextSong(){
+    async getNextSongId(){
         const nextSongId = this.QUEUE[0]?.id
         const nextSong   = nextSongId ? nextSongId : this.DEFAULT_TRACK_ID
         return nextSong
@@ -73,11 +72,11 @@ class API {
                 this.ISUPDATING = true
                 const nowplaying    = this.TRACKS.find(track => track.trackid == "main")
                 nowplaying.position = 0
-                this.QUEUE.shift(1)    // remove from stack
-                const nextSong      = await this.getNextSong()
+                this.QUEUE.shift(1) // remove from stack
+                const nextSong      = await this.getNextSongId()
                 nowplaying.songid   = nextSong
                 await setNowPlaying(nextSong,this.SETTINGS)   // ffmpeg the mp3 into the nowplayling.mp3
-                this.EVENTEMIITER.emit(newSongEvent)          // new song event so that new song event can be sent to host with data
+                this.PLAYER.emit(this.PLAYER.events.newSong)        // new song event so that new song event can be sent to host with data
                 this.ISUPDATING = false
             }else{
                 await new Promise((resolve, reject) => setTimeout(resolve, 500))
@@ -111,6 +110,11 @@ class API {
         const  nowplayingid = this.TRACKS[0].songid
         return nowplayingid
     }
+    async getnextplayingid(){
+        let nextSongId = this.QUEUE[1]?.id
+        nextSongId     = nextSongId ? nextSongId : this.DEFAULT_TRACK_ID
+        return nextSongId
+    }
     // #ADD  SONG TO LIBRARY   #1
     // #ADD  SONG TO QUEUE     #3
     async enque(song){
@@ -121,6 +125,7 @@ class API {
         }else{
             this.QUEUE.push(song)
         }
+        this.PLAYER.emit(this.PLAYER.events.newSong)        // new song event so that new song event can be sent to host with data
     }
     // #PLAY SONG NOW          #2
     async playnow(song){
