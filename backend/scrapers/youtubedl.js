@@ -34,4 +34,4 @@ module.exports.youtubedl = main
 
 // FOR TESTING
 // const { youtubedl } = require('./scrapers/youtubedl')
-// let foo; youtubedl("cool", "https://www.youtube.com/watch?v=SebH8En9ZOY").then(res=>foo=res)
+// let response; youtubedl("cool", "https://www.youtube.com/watch?v=SebH8En9ZOY").then(res=>response=res)

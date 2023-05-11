@@ -35,7 +35,9 @@ bash demo.sh "This Love by Marroon 5"
 ssh -R 80:localhost:80 nokey@localhost.run
 ```
 
-Goto the [localhost:80](http://localhost:80) or the link provided by localhost.run to see the main page of the radio
+The radio should be running @ [localhost:80](http://localhost:80) and the link provided by localhost.run
+
+Control the radio using siri [shortcuts](shortcuts) or using curl & the [API](#api) 
 
 ## Project Directory
 | Name                                   | Purpose                                       | 
@@ -60,7 +62,7 @@ If you want to use docker instead of docker compose...
 ```bash
 # Launch an elastic search database, also exposes a debugging website @ http://localhost:7700
 docker network create test-network
-docker run --name meili --network test-network -p 7700:7700 -v $PWD/library/meili:/meili_data -d -it getmeili/meilisearch
+docker run --name meili --network test-network -p 7700:7700 -v $PWD/library/meili:/meili_data -d -it getmeili/meilisearch:v1.0.2
 
 # Build and run the radio, for a ctrl-c'able mode, switch the -d with -it --init
 docker build --tag radio .
