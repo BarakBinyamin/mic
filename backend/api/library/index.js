@@ -192,9 +192,5 @@ class library{
 module.exports = new library()
 
 // usage
-// const { controls } = require('./api/functions/controls.js')
-// controls.addLucky("hey ho lets go")
-
-// fixing queue issues
-// database.search(" ",{filter:'firstinqueue = true'}).then(res=>console.log(res))
-// database.updateDocuments([{id:'1104491c-4f3d-4da6-a075-c5507977cd07',firstinqueue:false}])
+// const { library } = require('./api/library')
+// library.addLucky("hey ho lets go")
