@@ -9,7 +9,11 @@ const API                 = require('./api')
 // CONSTANT GLOBALS
 const UPDATERATE      = '* * * * * *'            // every second
 const NEEDLE          = createNeedle(UPDATERATE) // realiably emits events on UPDATERATE
-const EVENTEMITTER    = new EventEmitter()
+const PLAYER          = new EventEmitter()
+PLAYER['events']      = {
+    'update'  : 'update',
+    'newSong' :'newSong'
+}
 const DEFAULT_TRACK_ID= "whitenoise"
 const WORKING_DIR     = "./player/nowplaying"    // runtime directory where all currently playing tracks go
 const MAIN_TRACK      = { trackid: "main", songid: "whitenoise", position: 0, location: `${WORKING_DIR}/nowplaying.mp3`}
@@ -24,7 +28,7 @@ let SETTINGS     = {
 }
 let TRACKS       = [MAIN_TRACK]                  // tracks to mix into the audioBuffer
 
-const api = new API(QUEUE, SETTINGS, TRACKS, EVENTEMITTER, WORKING_DIR, DEFAULT_TRACK_ID, SAMPLESPERPACKET)
+const api = new API(QUEUE, SETTINGS, TRACKS, PLAYER, WORKING_DIR, DEFAULT_TRACK_ID, SAMPLESPERPACKET)
 
 async function init(){
     api.updateTracks()
@@ -32,17 +36,15 @@ async function init(){
 
 async function updateBuffer(){
     AUDIOBUFFER = await api.getOneSecond()
-    EVENTEMITTER.emit("update")
+    PLAYER.emit(PLAYER.events.update)
 }
 
-NEEDLE.on("update", updateBuffer)
+NEEDLE.on(NEEDLE.events.update, updateBuffer)
 
-const player = {
-    getAudioBuffer : () => { return AUDIOBUFFER },
-    eventEmitter   : EVENTEMITTER,
-    api: api
-}
+PLAYER['getAudioBuffer'] = () => { return AUDIOBUFFER }
+PLAYER['api']            = api
+
 
 init()
 
-module.exports = player
+module.exports = PLAYER
