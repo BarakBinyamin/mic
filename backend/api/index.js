@@ -7,15 +7,17 @@ const library = require('./library')
 
 router.use(express.json()) // add json support to router
 
+const IMGBASEPATH = __dirname.split('/backend')[0]
+
 // Main Streaming Route
 router.get("/nowPlaying", async (req,res)=>{
     res.writeHead(200,"OK",{"Content-Type":"audio/mpeg"})
 
     const updateHandler = () =>{ const audioBuffer = player.getAudioBuffer(); res.write(audioBuffer);}
-    player.eventEmitter.on("update", updateHandler) // On update event, then send another packet
+    player.on(player.events.update, updateHandler) // On update event, then send another packet
 
     req.socket.on("close",()=>{
-        player.eventEmitter.removeListener("update",updateHandler)
+        player.removeListener(player.events.update,updateHandler)
         console.log(`Client ${req.socket.remoteAddress || ""} disconected from server`)
     })
 })
@@ -72,7 +74,7 @@ router.get("/img", async (req,res)=>{
     const path   = `../library/${id}.jpg`
     const exists = fs.existsSync(path,{root:'.'})
     if (exists){
-        res.sendFile(`/usr/src/library/${id}.jpg`)
+        res.sendFile(`${IMGBASEPATH}/library/${id}.jpg`)
     }else{
         res.status(404).send("Not Found")
     }
@@ -87,6 +89,8 @@ router.get("/songinfo", async (req,res)=>{
     const results     = await library.getSongInfo(songId)
     res.send(results)
 })
-
+router.get("*", async (req,res)=>{
+    res.send("The api is up and running, but this route does not exist")
+})
 
 module.exports = router

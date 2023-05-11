@@ -35,6 +35,7 @@ const http                  = require('http')
 const server                = http.createServer(app)
 const { Server }            = require("socket.io")
 const io                    = new Server(server)
+io.events                   = {'update':'update'}
 const player                = require("./player")
 const baseurl               = `http://localhost:${PORT}`
 
