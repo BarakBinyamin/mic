@@ -3,7 +3,8 @@ const { spawnSync } = require('child_process')
 const LIBRARY = '../library'
 
 async function download(url,id){
-    const output = spawnSync('ffmpeg',['-i',`${url}`, '-vf', 'scale=3000:3000', `${LIBRARY}/${id}.jpg`])
+    // output size tested for ios 15.6 and 16.4 html5 mediaSession api image
+    const output = spawnSync('ffmpeg',['-i',`${url}`, '-vf', 'scale=512:512', `${LIBRARY}/${id}.jpg`])
 }
 
 module.exports.dlimg = download

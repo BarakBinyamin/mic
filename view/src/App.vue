@@ -4,7 +4,7 @@
       <nowplaying :playing="playing" :title="songInfo.title" :artist="songInfo.artist" :artsrc="songInfo.artsrc"/>
     </div>
     <div class="up-next">
-      <upnext/>
+      <upnext     :title="nextUp.title" :artist="nextUp.artist" :artsrc="nextUp.artsrc"/>
     </div>
   </div>
   <div class="play-container">
@@ -32,6 +32,11 @@ export default{
         title: "nothin'",
         artist: "nobody",
         artsrc: ""
+      },
+      nextUp: {
+        title: "nothin'",
+        artist: "nobody",
+        artsrc: ""
       }
     }
   },
@@ -41,6 +46,9 @@ export default{
       this.songInfo.title = info.title
       this.songInfo.artist= info.artist
       this.songInfo.artsrc= info.artsrc
+      this.nextUp.title   = info.nextTitle
+      this.nextUp.artist  = info.nextArtist
+      this.nextUp.artsrc  = info.nextArtsrc
     }
   }
 }
@@ -73,13 +81,6 @@ body{
 .now-playing{
   display:block;
   /* background: blue; */
-  height: 100%;
-  width: 100%;
-}
-
-.up-next{
-  display:block;
-  background: red;
   height: 100%;
   width: 100%;
 }
