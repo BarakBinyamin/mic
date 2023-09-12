@@ -27,8 +27,8 @@ Traditionally programs like icecast are used to to mix and stream audio. This pr
 
 ## TODO: Skip/Play Next & Fix Buffering 
 Audio needs to be buffered because theres so much data.
-- To get the effect of an instant skip we can prefetch our next song, and use websockets to notify the webpage to switch streams, like we do for the UI and the album art.
-- At that point the next next song needs to be prefetched
+1. To get the effect of an instant skip we can prefetch our next song, and use websockets to notify the webpage to switch streams like we do for the UI and the album art
+2. At that point the next next song needs to be prefetched
 
 
 ## Resources
