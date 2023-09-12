@@ -16,7 +16,7 @@ Traditionally programs like icecast are used to to mix and stream audio. This pr
 2. Scrape the data from genius, usually comes with a youtube link
 3. Download the song in m4a format from youtube using a youtube link
 4. Convert to mp3 and wav file for any other purposes (like streaming to browsers or embedded devices)
-5. Add all the metadata to the m4a with atomicParsley
+5. Add all the metadata to the m4a with atomicParsley, add all metadata to meilisearch for typo-tolerant/closest match search
 
 ## TODO: Accept voice over
 1. Recieve and record new channel of voice
