@@ -1,5 +1,5 @@
 # Backend 
-Traditionally programs like icecast are used to to mix and stream audio. This project uses nodejs express to rate limit audio so the feed can be altered before its sent out, but in the future will use websockets and prefetching to control flow improve quality of service
+Traditionally programs like icecast are used to to mix and stream audio. This project uses nodejs express to rate limit audio so the feed can be altered before its sent out, but in the future will use websockets and prefetching to control flow & improve quality of service
 
 ### Directory
 | Name                        | Purpose                              | 
