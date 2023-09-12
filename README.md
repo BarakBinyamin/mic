@@ -85,7 +85,7 @@ docker run -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network -d
 - [ ] Radio controls UI, with voice over
 - [ ] Visuals for the audio 
 - [ ] Message to let poeple know when song is buffering
-- [ x ] **Up next** on the bottom of the main page
+- [x] **Up next** on the bottom of the main page
 - [ ]  [Click here](https://raw.githubusercontent.com/Barakvinyamin/mic/main/Demo.mp4) to see a video demo
 
 ### Known bugs
