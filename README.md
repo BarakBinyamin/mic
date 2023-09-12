@@ -87,6 +87,7 @@ docker run -p 80:80 -v ${PWD}/library:/usr/src/library --network test-network -d
 - [ ] Message to let poeple know when song is buffering
 - [x] **Up next** on the bottom of the main page
 - [ ]  [Click here](https://raw.githubusercontent.com/Barakvinyamin/mic/main/Demo.mp4) to see a video demo
+- [ ] Radio sometimes crashes on boot with an error about not being able to find a file
 
 ### Known bugs
 - Fix the ratio of mp3 bytes to seconds to prevent stalls
