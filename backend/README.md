@@ -1,5 +1,5 @@
 # Backend 
-Traditionally programs like icecast are used to to mix and stream audio. This project uses nodejs express to rate limit audio so the feed can be altered before its sent out
+Traditionally programs like icecast are used to to mix and stream audio. This project uses nodejs express to rate limit audio so the feed can be altered before its sent out, but in the future will use websockets and prefetching to control flow improve quality of service
 
 ### Directory
 | Name                        | Purpose                              | 
@@ -24,6 +24,12 @@ Traditionally programs like icecast are used to to mix and stream audio. This pr
     2. The other way would be realtime mixing with ffmpeg
 2. Handle missing song data, currently setnowplaying just errors out server never responds
 3. Handle long add song time, timeout client
+
+## TODO: Skip/Play Next & Fix Buffering 
+Audio needs to be buffered because theres so much data.
+- To get the effect of an instant skip we can prefetch our next song, and use websockets to notify the webpage to switch streams, like we do for the UI and the album art.
+- At that point the next next song needs to be prefetched
+
 
 ## Resources
 - [Stack Overflow: stream audio in javascript](https://stackoverflow.com/questions/74751390/what-is-the-best-way-to-stream-audio-to-the-browser-chunk-by-chunk-with-javacr)
