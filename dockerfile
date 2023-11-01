@@ -14,5 +14,6 @@ WORKDIR /usr/src/backend
 COPY    /backend/package.*  .
 RUN     npm install
 COPY    /backend .
+RUN     /usr/src/backend/node_modules/youtube-dl-exec/bin/yt-dlp --update-to stable@2023.07.06
 
 ENTRYPOINT [ "node", "index.js"]
