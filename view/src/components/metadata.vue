@@ -22,7 +22,7 @@ export default{
                         artist:  metadata?.artist,
                         album:   metadata?.album,
                         artwork: [
-                            { src:  metadata?.artsrc,  type: 'image/jpg' },
+                            { src:  metadata?.artsrc,  type: 'image/jpeg' },
                         ]
                     })
                 }else{
@@ -31,7 +31,7 @@ export default{
                         // artist:  "",
                         // album:   "",
                         artwork: [
-                             { src:  "/api/img?id=whitenoise",  type: 'image/jpg' },
+                             { src:  "/api/img?id=whitenoise",  type: 'image/jpeg' },
                         ]
                     })
                 }
